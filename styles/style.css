@@ -1,0 +1,90 @@
+body {
+ background-color: #29324c;
+}
+
+#mainView {
+  display: flex;
+  justify-content: center ;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#gridView {
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+  order: 0;
+  flex-grow: 3;
+}
+
+#controlPanel {
+  width: 60%;
+  border-left: solid black 2px;
+  background-color: #29324c;
+}
+
+.cameraView {
+  background: tomato;
+  padding: 5px;
+  width: 268px;
+  height: 201px;
+  margin-top: 10px;
+}
+
+.cameraView:hover {
+    background: #a06c4e;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+
+  background: deepskyblue;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.navigation a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: white;
+}
+
+.navigation a:hover {
+  background: darken(deepskyblue, 2%);
+}
+
+@media all and (max-width: 800px) {
+  .navigation {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .navigation {
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    padding: 0;
+  }
+
+  .navigation a {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+
+  .navigation li:last-of-type a {
+    border-bottom: none;
+  }
+}
