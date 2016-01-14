@@ -1,11 +1,11 @@
-#webCamWindow {
+.webCamWindow {
 	border: 1px solid #000;
 	width: 640px;
 	height:  480px;
 	position: absolute;
 	top: 0;
 	opacity: 1;
-	left: 0;	
+	left: 0;
 }
 
 #canvas {

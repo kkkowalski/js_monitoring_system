@@ -25,15 +25,25 @@ body {
 }
 
 .cameraView {
+  border: 2px solid white;
   background: tomato;
-  padding: 5px;
-  width: 268px;
-  height: 201px;
-  margin-top: 10px;
+  padding: 0px;
+  width: 320px;
+  height: 200px;
+  margin-top: 25px;
 }
 
 .cameraView:hover {
     background: #a06c4e;
+}
+
+.cameraMaterial {
+  width: 320px;
+  height: 200px;
+  top: 0;
+  opacity: 1;
+  left: 0;
+  margin-top: -10px;
 }
 
 .navigation {
