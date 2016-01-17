@@ -18,28 +18,28 @@ var options = {
 var clients = [ ];
 
 var ws_server = ws.createServer(options, function (conn) {
-    console.log((new Date()) + " Peer " + conn.remoteAddress + " connected.");
-    var index = clients.push(conn) - 1;
+  console.log((new Date()) + "WSS  Peer " + conn.remoteAddress + " connected.");
+  var index = clients.push(conn) - 1;
 
-    conn.on("text", function (str) {
-        console.log("Received frame");
-        conn.sendText(str.toUpperCase()+"!!!")
-        for (var i=0; i < clients.length; i++) {
-          clients[i].sendText(str);
-        }
-    })
+  conn.on("text", function (str) {
+    console.log("Received frame");
+    conn.sendText(str.toUpperCase()+"!!!")
+    for (var i=0; i < clients.length; i++) {
+      clients[i].sendText(str);
+    }
+  })
 
-    conn.on("close", function (code, reason) {
-        console.log("Connection closed")
-        console.log((new Date()) + " Peer " + conn.remoteAddress + " disconnected.");
-        clients.splice(index, 1);
-    })
+  conn.on("close", function (code, reason) {
+      console.log("Connection closed")
+      console.log((new Date()) + "WSS  Peer " + conn.remoteAddress + " disconnected.");
+      clients.splice(index, 1);
+  })
 
-    console.log(clients.length);
+  console.log(clients.length);
 }).listen(8001)
 
 https.createServer(options,function (request, response) {
-  console.log('request starting...');
+  console.log((new Date()) + "HTTPS  Peer " + request.remoteAddress + " connected.");
 
   var filePath = '.' + request.url;
   if (filePath == './')

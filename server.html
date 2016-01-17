@@ -5,14 +5,17 @@
 
     </head>
     <body>
-        <h1>Monitoring System - Camera Streamer</h1>
+        <ul class="navigation">
+          <li><a href='../client.html'>Open Console</a></li>
+          <li><a href='../server.html'>Stream Camera</a></li>
+        </ul>
 
         <p>Server requires a browser which supports getUserMedia, basically a nightly
             opera mobile build or a customer ericsson webkit build.</p>
 
         <video id="video" style=" -o-object-fit:cover; text-align: center"></video>
         <input type="button" value="Start Stream" id="button"></input>
-        <canvas id="canvas" width="240" height="320" id="buffer"> </canvas>
+        <canvas id="canvas" width="480" height="720" id="buffer"> </canvas>
         <script src="js/connector.js"></script>
         <script src="js/camera.js"></script>
     </body>

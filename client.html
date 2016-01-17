@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Camera streamer</title>
@@ -5,15 +6,33 @@
 
     </head>
     <body>
-        <h1>Monitoring System - Monitoring Center</h1>
+        <ul class="navigation">
+          <li><a href='../client.html'>Open Console</a></li>
+          <li><a href='../server.html'>Stream Camera</a></li>
+        </ul>
 
         <p>Server requires a browser which supports getUserMedia, basically a nightly
             opera mobile build or a customer ericsson webkit build.</p>
 
-        <img src="" id="img"></img>
+        <img src="" alt="No signal" id="img" class="cameraView" onclick="openModalCam(this.id);"></img>
+        <div id="myModal" class="modal">
+          <span class="close">x</span>
+          <video class="modal-content" width="720" height="480" autoplay id="vid01">
+            <img src="" alt="No signal" id="img" class="cameraView" onclick="openModalCam(this.id);">
+            Your browser does not support the video tag.
+          </video>
+          <div id="caption"></div>
+        </div>
+        <div id = "controlPanel">
+      </div>
 
         <script src="js/connector.js"></script>
         <script src="js/client.js"></script>
+        <script type="text/javascript" src="js/camera/cameraView.js"></script>
     </body>
 
 </html>
+
+
+
+
