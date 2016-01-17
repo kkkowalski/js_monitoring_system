@@ -1,16 +1,20 @@
+var express = require('express');
 var http = require('http');
+var https = require('https');
 var fs = require('fs');
 var ws = require('nodejs-websocket');
 var sys = require("sys");
 var path = require('path');
 
-// Create websocket server
-var ws_server = ws.createServer(function (conn) {
+var options = {
+  secure: true,
+  key: fs.readFileSync('key/localhost.pem'),
+  cert: fs.readFileSync('key/localhost.cert')
+};
+var ws_server = ws.createServer(options,function (conn) {
     console.log("New connection")
     conn.on("binary", function (inStream) {
-        // Empty buffer for collecting binary data
         var data = new Buffer(0)
-        // Read chunks of binary data and add to the buffer
         inStream.on("readable", function () {
             var newData = inStream.read()
             if (newData)
@@ -35,17 +39,13 @@ var ws_server = ws.createServer(function (conn) {
     })
 }).listen(8001)
 
-/**
- * Setup simple http server to serve static page elements on port 8000
- */
-http.createServer(function (request, response) {
+https.createServer(options,function (request, response) {
+  console.log('request starting...');
 
-    console.log('request starting...');
-	
 	var filePath = '.' + request.url;
 	if (filePath == './')
 		filePath = './index.html';
-		
+
 	var extname = path.extname(filePath);
 	var contentType = 'text/html';
 	switch (extname) {
@@ -56,9 +56,9 @@ http.createServer(function (request, response) {
 			contentType = 'text/css';
 			break;
 	}
-	
+
 	fs.exists(filePath, function(exists) {
-	
+
 		if (exists) {
 			fs.readFile(filePath, function(error, content) {
 				if (error) {
@@ -76,30 +76,5 @@ http.createServer(function (request, response) {
 			response.end();
 		}
 	});
-	
+
 }).listen(8000);
-
-
-/*
-// Handle WebSocket Requests
-ws_server.addListener("connection", function(conn){
-
-//add listener to rebroadcast incomming messages
-  conn.addEventListener("message", function(msg){
-	console.log('message');
-        conn.broadcast(msg);
-    });
-});
-
-ws_server.addListener("error", function(){
-  console.log(Array.prototype.join.call(arguments, ", "));
-});
-
-
-ws_server.addListener("disconnected", function(conn){
-  ws_server.broadcast("<"+conn.id+"> disconnected");
-});
-
-//start websocket server on port 8001
-ws_server.listen(8001);
-*/
