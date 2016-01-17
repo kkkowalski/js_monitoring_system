@@ -1,3 +1,7 @@
+"use strict";
+
+process.title = 'node-monitoring-system';
+
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
@@ -13,19 +17,25 @@ var options = {
 
 var clients = [ ];
 
-// Scream server example: "hi" -> "HI!!!"
 var ws_server = ws.createServer(options, function (conn) {
-    console.log("New connection")
+    console.log((new Date()) + " Peer " + conn.remoteAddress + " connected.");
+    var index = clients.push(conn) - 1;
+
     conn.on("text", function (str) {
         console.log("Received frame");
         conn.sendText(str.toUpperCase()+"!!!")
-        var index = clients.push(conn) - 1;
-       // ws_server.broadcast("test");
+        for (var i=0; i < clients.length; i++) {
+          clients[i].sendText(str);
+        }
     })
 
     conn.on("close", function (code, reason) {
         console.log("Connection closed")
+        console.log((new Date()) + " Peer " + conn.remoteAddress + " disconnected.");
+        clients.splice(index, 1);
     })
+
+    console.log(clients.length);
 }).listen(8001)
 
 https.createServer(options,function (request, response) {
