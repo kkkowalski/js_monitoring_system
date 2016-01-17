@@ -1,16 +1,9 @@
-/*******************************************************************************
- *
- * Streaming Video Client
- *
- * Recieves image data via a websocket connection and renders it to #img
- *
- *******************************************************************************
- */
+window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-var ws = new WebSocket("wss://"+ws_ip+":"+ws_port+"/"),
-img = document.getElementById('img');
+var ws = new WebSocket("wss://"+ws_ip+":"+ws_port+"/");
 
-//setup callbacks
+var img = document.getElementById('img');
+
 ws.onopen = function()
 {
     console.log('Websocket Open');
@@ -32,3 +25,8 @@ ws.onmessage = function(message)
     console.log(img);
 };
 
+ws.ontext = function(text)
+{
+    img.src=text.data;
+    console.log(text);
+};

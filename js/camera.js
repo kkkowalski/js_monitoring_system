@@ -4,6 +4,9 @@ snapshot = null,
 upload_image,
 video = document.getElementsByTagName('video')[0],
 heading = document.getElementsByTagName('h1')[0];
+
+window.WebSocket = window.WebSocket || window.MozWebSocket;
+
 var ws = new WebSocket("wss://"+ws_ip+":"+ws_port+"/");
 
 function capture(video, scaleFactor) {
@@ -24,13 +27,11 @@ function shoot(){
         window.open(this.toDataURL());
     };
 
-    //load the photo when the new page opens
     $('#photos').live('pageshow',function(){
         $('#output').html(canvas);
         upload_image = canvas.toDataURL();
     });
 
-    //load the photos page
     $.mobile.changePage('#photos');
 }
 
@@ -91,6 +92,11 @@ ws.onmessage = function(event)
     console.log('message');
 };
 
+ws.ontext = function(event)
+{
+    console.log('text');
+};
+
 addEventListener('click', streamFrame, false);
 
 function streamFrame()
@@ -103,6 +109,5 @@ function streamFrame()
         console.log(image);
         console.log('send');
         ws.send(image);
-
     },400);
 }
