@@ -1,36 +1,20 @@
-<!DOCTYPE html>
 <html>
-	<head>
-		<title>Webcam motion detection</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="styles/main.css" media="all">
+<head>
+<title>HTML5 Video Streaming</title>
+<link rel="stylesheet" type="text/css" href="css/second.css" />
 
-		<script src="https://simplewebrtc.com/latest-v2.js"></script>
-	</head>
-	<body>
-		<div class="row" style="height: 640px">
-			<video id="webCamWindow" autoplay></video>
-			<div id="movement"></div>
-		</div>
-		<!--<video height="300" id="localVideo"></video>-->
-		<div class="row">
-			<div id="remotesVideos"></div>
-		</div>
+</head>
+<body>
+<h1>Monitoring System</h1>
 
-		<script>
-			var webrtc = new SimpleWebRTC({
-				// the id/element dom element that will hold "our" video
-				localVideoEl: 'webCamWindow',
-				// the id/element dom element that will hold remote videos
-				remoteVideosEl: 'remotesVideos',
-				// immediately ask for camera access
-				autoRequestMedia: true
-			});
-			webrtc.on('readyToCall', function () {
-				// you can name it anything
-				webrtc.joinRoom('polibudki');
-			});
-		</script>
-	<script type="text/javascript" src="js/MotionDetection.js"></script>
-	</body>
+<p>Server requires a browser which supports getUserMedia, basically a <a href="http://my.opera.com/core/blog/2011/03/23/webcam-orientation-preview">dev
+        opera mobile build</a> or a custom <a href="https://labs.ericsson.com/apis/web-real-time-communication/">Ericsson webkit build.</a></p>
+
+<ul>
+	<li><a href="client.html">Open monitoring console</a></li>
+	<li><a href="server.html">Connect as streaming camera</a></li>
+</ul>
+
+</body>
+
 </html>

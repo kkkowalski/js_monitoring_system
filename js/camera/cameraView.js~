@@ -19,4 +19,9 @@ function openModalCam(id){
   modalVidSrc.alt = thisVidSrc.alt;
   captionText.innerHTML = "CAM";
   console.log(modalVidSrc);
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> 92796ed3e7a9c6b646b636a678f25380cb9793ea
