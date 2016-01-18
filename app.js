@@ -27,8 +27,10 @@ var ws_server = ws.createServer(options, function (conn) {
   conn.on("text", function (str) {
     console.log((new Date()) + "Received frame from: "+conn.headers.host);
     conn.sendText(str.toUpperCase());
-    for (var i=0; i < clients.length; i++) {
-      clients[i].sendText(str);
+    if(clients.length>0){
+      for (var i=0; i < clients.length; i++) {
+        clients[i].sendText(str);
+      }
     }
   })
 

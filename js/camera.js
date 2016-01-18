@@ -91,8 +91,10 @@ function streamFrame(){
 
     setInterval(function(){
       if(active){
+        canvas.width=320;
+        canvas.height=200;
         var video = document.getElementById("video");
-        context.drawImage(video,0,0,880,580);
+        context.drawImage(video,0,0,320,200);
         var image = canvas.toDataURL("image/png");
         ws.send(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
       }

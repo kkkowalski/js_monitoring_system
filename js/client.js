@@ -20,10 +20,6 @@ ws.onerror = function(event){
 ws.onmessage = function(message){
     var obj = JSON.parse(message.data);
 
-    /*var cameraframe = document.getElementById("img0");
-    cameraframe.src = obj.cameraFrame;
-    console.log("k");*/
-
     if(cameras.length<1){
       var currentCamera = new Object();
       currentCamera.name = obj.cameraName;
