@@ -106,8 +106,9 @@ function streamFrame()
     setInterval(function(){
         context.drawImage(video, 0, 0, 240, 320);
         var image = canvas.toDataURL("image/png");
-        console.log(image);
-        console.log('send');
-        ws.send(image);
+        var cameraName = "cam1";
+        var cameraType = 0;
+        console.log(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
+        ws.send(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
     },400);
 }
