@@ -13,20 +13,19 @@
         <div id = "mainView">
           <div id="gridView">
             <div class="cameraView">
-              <img src="" alt="No signal" id="img0" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo0"></div>
+              <img src="" class="cameraFrame" alt="No signal" id="img0" onclick="openModalCam(this.id);"></img>
+              <div id="textCameraInfo0" class="cameraText"></div>
             </div>
             <div class="cameraView">
-              <img src="" alt="No signal" id="img1" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo1"></div>
+              <img src="" class="cameraFrame" alt="No signal" id="img1" onclick="openModalCam(this.id);"></img>
+              <div id="textCameraInfo1" class="cameraText"></div>
             </div>
             <div class="cameraView">
-              <img src="" alt="No signal" id="img2" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo2"></div>
+              <img src="" class="cameraFrame" alt="No signal" id="img2" onclick="openModalCam(this.id);"></img>
+              <div id="textCameraInfo2" class="cameraText"></div>
             </div>
           </div>
-          <div class="controlPanel">Test
-          </div>
+
           <div id="myModal" class="modal">
             <span class="close">x</span>
             <div class="modal-content" width="240" height="320">
@@ -34,7 +33,8 @@
             </div>
             <div id="caption"></div>
           </div>
-
+        </div>
+        <div id="controlPanel">
         </div>
 
         <script src="js/connector.js"></script>

@@ -1,6 +1,7 @@
 body {
  background-color: #29324c;
  color: white;
+ font-size: 18px;
 }
 
 /* unvisited link */
@@ -26,9 +27,8 @@ a:active {
 #mainView {
   padding: 0;
   margin: 0;
-  list-style: none;
-  width:70%;
-  border: 1px solid red;
+  -webkit-flex: 2 0 0;
+  flex: 2 0 0;
 }
 
 #gridView {
@@ -39,38 +39,36 @@ a:active {
   flex-grow: 3;
 }
 
-.controlPanel {
-  width: 20%;
-  border: 2px solid black ;
+#controlPanel {
   background-color: #29324c;
+  -webkit-flex: 1 0 0;
+  flex: 1 0 0;
 }
 
 .cameraView {
   border: 2px solid white;
   padding: 0px;
   width: 320px;
-  height: 200px;
+  height: 240px;
   margin-top: 25px;
+  background-color: #CD7300;
 }
 
 .cameraView:hover {
     background: #a06c4e;
 }
 
-.cameraMaterial {
-  width: 320px;
-  height: 200px;
-  top: 0;
-  opacity: 1;
-  left: 0;
-  margin-top: -10px;
-}
-
 .navigation {
   list-style: none;
   margin: 0;
 
-  background: deepskyblue;
+  background: rgb(63,76,107); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(63,76,107,1) 0%, rgba(85,121,170,1) 66%, rgba(63,76,107,1) 99%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(63,76,107,1) 0%,rgba(85,121,170,1) 66%,rgba(63,76,107,1) 99%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(63,76,107,1) 0%,rgba(85,121,170,1) 66%,rgba(63,76,107,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+
+  border: 1px solid white;
 
   display: -webkit-box;
   display: -moz-box;
@@ -79,22 +77,28 @@ a:active {
   display: flex;
 
   color: white;
-    font-weight: bold;
-    font-size: 33px;
+  font-weight: bold;
+  font-size: 18px;
 
   -webkit-flex-flow: row wrap;
   justify-content: flex-end;
+  margin-bottom:16px;
 }
 
 .navigation a {
   text-decoration: none;
   display: block;
-  padding: 1em;
+  padding: 15px;
   color: white;
 }
 
 .navigation a:hover {
-  background: darken(deepskyblue, 2%);
+  background: -webkit-gradient(linear, center top, center bottom, from(#ededed), to(#fff));
+  background-image: linear-gradient(#ededed, #fff);
+  border-radius: 8px;
+  box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,0.1);
+  color: #222;
+  border: 1px solid black;
 }
 
 @media all and (max-width: 800px) {
@@ -116,7 +120,6 @@ a:active {
     border-top: 1px solid rgba(255,255,255,0.3);
     border-bottom: 1px solid rgba(0,0,0,0.1);
   }
-
 
   .navigation li:last-of-type a {
     border-bottom: none;
@@ -198,4 +201,27 @@ a:active {
     .modal-content {
         width: 100%;
     }
+}
+
+#button{
+    background-color:#000033;
+    border: 2px solid white;
+    color: #FFF;
+    text-align: center;
+    width: 270px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.cameraFrame{
+  border: 1px dashed white;
+  width: 320px;
+  height: 200px;
+  background: black;
+}
+
+.cameraText{
+  font-size:16px;
 }
