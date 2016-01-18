@@ -1,20 +1,29 @@
 <html>
-    <head>
-        <title>Monitoring Console</title>
-        <link rel="stylesheet" type="text/css" href="css/second.css" />
+  <head>
+    <title>Camera Streamer</title>
+    <link rel="stylesheet" type="text/css" href="css/second.css" />
+  </head>
+  <body>
+    <ul class="navigation">
+      <li><a href='../client.html'>Open Console</a></li>
+      <li><a href='../server.html'>Stream Camera</a></li>
+    </ul>
 
-    </head>
-    <body>
-        <ul class="navigation">
-          <li><a href='../client.html'>Open Console</a></li>
-          <li><a href='../server.html'>Stream Camera</a></li>
-        </ul>
+    Camera name:
+    <input type="text" id="BoxCameraName" name="BoxCameraName" value="Camera#1"/><br/>
+    Camera type:
+    <input type="radio" name="BoxCameraType" value="physical" checked="checked">Physical
+    <input type="radio" name="BoxCameraType" value="virtual">Virtual<br>
+    <input type="button" class="streamControl" value="Start Stream" id="button"></input><br/>
+    <br/>Camera input:<br/>
+    <video id="video" style=" -o-object-fit:cover; text-align: center" autoplay loop>
+      <source src="/video/480p_nature.mp4" type="video/mp4">
+    </video>
 
-        <video id="video" style=" -o-object-fit:cover; text-align: center"></video>
-        <input type="button" value="Start Stream" id="button"></input>
-        <canvas id="canvas" width="480" height="720" id="buffer"> </canvas>
+    <br/>Send material:<br/>
+    <canvas id="canvas" width="900" height="580" id="buffer"> </canvas>
 
-        <script src="js/connector.js"></script>
-        <script src="js/camera.js"></script>
-    </body>
+    <script src="js/connector.js"></script>
+    <script src="js/camera.js"></script>
+  </body>
 </html>
