@@ -31,15 +31,6 @@ a:active {
   border: 1px solid red;
 }
 
-#mainView > div {
-  width: 50%;
-  padding: 10px;
-}
-
-#mainView > div:first-child {
-  margin-right: 20px;
-}
-
 #gridView {
   display: flex;
   -webkit-flex-flow: row wrap;

@@ -101,14 +101,16 @@ addEventListener('click', streamFrame, false);
 
 function streamFrame()
 {
-    var context = canvas.getContext("2d");
+  var context = canvas.getContext("2d");
+  var cameraName = document.getElementsByName("BoxCameraName")[0].value;
+  var cameraType = document.getElementsByName("BoxCameraType")[0].value;
 
-    setInterval(function(){
-        context.drawImage(video, 0, 0, 240, 320);
-        var image = canvas.toDataURL("image/png");
-        var cameraName = "cam1";
-        var cameraType = 0;
-        console.log(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
-        ws.send(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
-    },400);
+  setInterval(function(){
+      context.drawImage(video, 0, 0, 240, 320);
+      var image = canvas.toDataURL("image/png");
+
+      // Camera debug option
+      //console.log(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
+      ws.send(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
+  },400);
 }
