@@ -7,7 +7,7 @@ heading = document.getElementsByTagName('h1')[0];
 
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-var ws = new WebSocket("wss://"+ws_ip+":"+ws_port+"/");
+var ws = new WebSocket(ws_protocol+"://"+ws_ip+":"+ws_port+"/");
 
 function capture(video, scaleFactor) {
     var w = video.videoWidth * scaleFactor;
@@ -47,26 +47,25 @@ navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.mozGetUserMedia ||
                           navigator.msGetUserMedia);
    if (navigator.getUserMedia) {
-      navigator.getUserMedia(
-         {
-            video:true,
-            audio:true
-         },
-         function(stream) {
-          var url = window.URL || window.webkitURL;
-            video.src = url ? url.createObjectURL(stream) : stream;
-            video.play();
-         },
-         function(error) { heading.textContent ="An error occurred: [CODE " + error.code + "]"; }
-      );
-   }
-   else {
+    navigator.getUserMedia({
+      video:true,
+      audio:false
+    },
+    function(stream) {
+      var url = window.URL || window.webkitURL;
+      video.src = url ? url.createObjectURL(stream) : stream;
+      video.play();
+    },
+    function(error) {
+      heading.textContent ="An error occurred: [CODE " + error.code + "]";
+    }
+    )} else {
       alert('Sorry, the browser you are using doesn\'t support getUserMedia');
     }
 
 if(!supportsToDataURL())
 {
-    heading.textContent+="You browser is lame and does NOT support Canvas.toDataURL();"
+    heading.textContent+="You browser does NOT support Canvas.toDataURL();"
 }
 
 
@@ -111,6 +110,7 @@ function streamFrame()
 
       // Camera debug option
       //console.log(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
+
       ws.send(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
   },400);
 }
