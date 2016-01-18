@@ -19,6 +19,7 @@ var clients = [ ];
 
 var ws_server = ws.createServer(options, function (conn) {
   console.log((new Date()) + "WSS  Peer " + conn.headers.host + " connected.");
+  console.log(conn);
   var index = clients.push(conn) - 1;
 
   var ip = conn.remoteAddress;
@@ -32,8 +33,8 @@ var ws_server = ws.createServer(options, function (conn) {
   })
 
   conn.on("close", function (code, reason) {
-      console.log((new Date()) + "WSS  Peer " + conn.headers.host  + " disconnected.");
-      clients.splice(index, 1);
+    console.log((new Date()) + "WSS  Peer " + conn.headers.host  + " disconnected.");
+    clients.splice(index, 1);
   })
 
 }).listen(8001)

@@ -2,7 +2,6 @@
   <head>
     <title>Camera Streamer</title>
     <link rel="stylesheet" type="text/css" href="css/second.css" />
-
   </head>
   <body>
     <ul class="navigation">
@@ -17,10 +16,12 @@
     <input type="radio" name="BoxCameraType" value="virtual">Virtual<br>
     <input type="button" class="streamControl" value="Start Stream" id="button"></input><br/>
     <br/>Camera input:<br/>
-    <video id="video" class="cameraFrame" style=" -o-object-fit:cover; text-align: center"></video>
+    <video id="video" style=" -o-object-fit:cover; text-align: center" autoplay loop>
+      <source src="/video/480p_nature.mp4" type="video/mp4">
+    </video>
 
     <br/>Send material:<br/>
-    <canvas id="canvas" class="cameraFrame" id="buffer"> </canvas>
+    <canvas id="canvas" width="900" height="580" id="buffer"> </canvas>
 
     <script src="js/connector.js"></script>
     <script src="js/camera.js"></script>

@@ -1,5 +1,5 @@
 var videoId = 'video',
-scaleFactor = 0.5,
+scaleFactor = 1,
 snapshot = null,
 upload_image,
 video = document.getElementsByTagName('video')[0],
@@ -11,18 +11,18 @@ window.WebSocket = window.WebSocket || window.MozWebSocket;
 
 var ws = new WebSocket(ws_protocol+"://"+ws_ip+":"+ws_port+"/");
 
-function capture(video, scaleFactor) {
+/*function capture(video, scaleFactor) {
     var w = video.videoWidth * scaleFactor;
     var h = video.videoHeight * scaleFactor;
     var canvas = document.createElement('canvas');
     canvas.width  = w;
     canvas.height = h;
     var ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, w, h);
+    ctx.drawImage(video, 0, 0, 740, 480);
     return canvas;
-}
+}*/
 
-function shoot() {
+/*function shoot() {
     var output = document.getElementById('output');
     var canvas = capture(video, scaleFactor);
     canvas.onclick = function(){
@@ -35,7 +35,7 @@ function shoot() {
     });
 
     $.mobile.changePage('#photos');
-}
+}*/
 
 function supportsToDataURL() {
     var c = document.createElement("canvas");
@@ -79,10 +79,9 @@ function changeActiveState() {
 }
 
 function streamFrame(){
-
     var context = canvas.getContext("2d");
     var cameraName = document.getElementsByName("BoxCameraName")[0].value;
-    var RadiocameraType = document.getElementsByName("BoxCameraType")[0];
+    var RadiocameraType = document.getElementsByName("BoxCameraType");
         var cameraType = "";
         for (var i = 0; i < RadiocameraType.length; i++) {
             if (RadiocameraType[i].checked) {
@@ -92,11 +91,12 @@ function streamFrame(){
 
     setInterval(function(){
       if(active){
-        context.drawImage(video, 0, 0, 240, 320);
+        var video = document.getElementById("video");
+        context.drawImage(video,0,0,880,580);
         var image = canvas.toDataURL("image/png");
         ws.send(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
       }
-    },400);
+    },120);
   }
 
 navigator.getUserMedia = (navigator.getUserMedia ||
