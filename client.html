@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Camera streamer</title>
+        <link rel="stylesheet" type="text/css" href="css/second.css" />
+
+    </head>
+    <body>
+        <ul class="navigation">
+          <li><a href='../client.html'>Open Console</a></li>
+          <li><a href='../server.html'>Stream Camera</a></li>
+        </ul>
+        <div id = "mainView">
+          <div id="gridView">
+            <div class="cameraView">
+              <img src="" alt="No signal" id="img" onclick="openModalCam(this.id);"></img>
+            </div>
+            <div class="cameraView">
+              <img src="" alt="No signal" id="img2" onclick="openModalCam(this.id);"></img>
+            </div>
+            <div class="cameraView">
+              <img src="" alt="No signal" id="img3" onclick="openModalCam(this.id);"></img>
+            </div>
+          </div>
+          <div class="controlPanel">Test
+          </div>
+          <div id="myModal" class="modal">
+            <span class="close">x</span>
+            <div class="modal-content" width="240" height="320">
+              <img src="" alt="No signal" id="img" class="cameraView" onclick="openModalCam(this.id);">
+            </div>
+            <div id="caption"></div>
+          </div>
+
+        </div>
+
+        <script src="js/connector.js"></script>
+        <script src="js/client.js"></script>
+        <script type="text/javascript" src="js/camera/cameraView.js"></script>
+    </body>
+</html>

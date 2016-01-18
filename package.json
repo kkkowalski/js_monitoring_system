@@ -1,0 +1,18 @@
+{
+  "name": "js_monitoring_system",
+  "version": "1.0.0",
+  "description": "This is a simple demo of streaming live video from one web browser to another in Javascript.  Video is captured using the mobile phone camera using getUserMedia(), periodically frames  are captured and sent via a websocket to node.js which rebroadcasts them to all connected clients.  The clients then show the video by rendering each frame as an image as it arrives. The framerate is  slow due to the limited processor power of phones.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kkkowalski",
+  "license": "ISC",
+  "dependencies": {
+    "nodejs-websocket": "^1.5.0",
+    "path": "^0.12.7",
+    "path-exists": "^2.1.0",
+    "websocket": "^1.0.22",
+    "websocketserver": "^1.0.0"
+  }
+}
