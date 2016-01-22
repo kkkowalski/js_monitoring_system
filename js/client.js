@@ -24,28 +24,49 @@ ws.onmessage = function(message){
 
     if(cameras.length<1){
       var currentCamera = new Object();
+      var frameHolder = new Object();
+      var frames = [ ];
+
+      frameHolder.frame = obj.cameraFrame;
+      frameHolder.date = new Date();
+
+      frames.push(frameHolder);
+
+      currentCamera.frames = frames;
       currentCamera.name = obj.cameraName;
-      currentCamera.frame = obj.cameraFrame;
       currentCamera.type = obj.cameraType;
       cameras.push(currentCamera);
     }
 
     if(seekCameraInList(obj.cameraName)){
-      var currentCamera = seekCameraInList(obj["cameraName"]);
-      console.log(currentCamera);
-      currentCamera.frame = obj["cameraFrame"];
-      currentCamera.type = obj["cameraType"];
+      var currentCamera = seekCameraInList(obj.cameraName);
+      var frames = currentCamera.frames;
+      var frameHolder = new Object();
+      frameHolder.date = new Date();
+      frameHolder.frame = obj.cameraFrame;
+
+      frames.push(frameHolder);
+      currentCamera.type = obj.cameraType;
     }else{
       var currentCamera = new Object();
-      currentCamera.name = obj["cameraName"];
-      currentCamera.frame = obj["cameraFrame"];
-      currentCamera.type = obj["cameraType"];
+      var frames = [ ];
+
+      var frameHolder = new Object();
+      frameHolder.date = new Date();
+      frameHolder.frame = obj.cameraFrame;
+
+      frames.push(frameHolder);
+
+      currentCamera.name = obj.cameraName;
+      currentCamera.frames = frames;
+      currentCamera.type = obj.cameraType;
       cameras.push(currentCamera);
     }
 
       for (var i=0; i < cameras.length; i++) {
         var cameraframe = document.getElementById("img" + i);
-        cameraframe.src = cameras[i].frame;
+        var frames = cameras[i].frames;
+        cameraframe.src = frames[frames.length-1].frame;
 
         // Dirty workaround for sending text inside prepared div
         var theDiv = document.getElementById("textCameraInfo"+i);
@@ -68,7 +89,6 @@ ws.onmessage = function(message){
 
 ws.ontext = function(text){
     img.src=text[image];
-    console.log(text[image]);
 };
 
 function seekCameraInList(incName) {
@@ -83,7 +103,6 @@ function seekCameraInList(incName) {
 function updateSelectedCameras(){
   var divs = document.getElementById("gridView").getElementsByTagName("div");
   for(var i = 0; i < divs.length; i++){
-    console.log(divs[i].id.indexOf('div')>-1)
     if(divs[i]==selectedCamera){
       divs[i].style.border = "1px solid #686182";
       divs[i].style.backgroundColor = "#284365";
@@ -96,6 +115,16 @@ function updateSelectedCameras(){
   }
 }
 
+function checkCameraStatus(){
+    for (var i=0; i < cameras.length; i++) {
+      var currentFrame = cameras[i].frames;
+      console.log(currentFrame);
+    }
+  setTimeout(checkCameraStatus, 5000);
+}
+
+checkCameraStatus();
+
 function setSelectedCamera(camera){
   selectedCamera = document.getElementById(camera);
   updateSelectedCameras();
@@ -105,7 +134,7 @@ function getSelectedCamera(){
   return selectedCamera;
 }
 
-function getSelectedCameraFrame(){
+function getSelectedCameraframes(){
   return selectedCamera.getElementsByTagName('img')[0];
 }
 
