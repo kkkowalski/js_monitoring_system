@@ -1,5 +1,4 @@
 var videoId = 'video',
-scaleFactor = 1,
 video = document.getElementsByTagName('video')[0],
 heading = document.getElementsByTagName('h1')[0];
 
@@ -96,4 +95,13 @@ navigator.getUserMedia = (navigator.getUserMedia ||
 
 if(!supportsToDataURL()) {
     heading.textContent+="You browser does NOT support Canvas.toDataURL();"
+}
+
+function setCameraType(type){
+  cameraType=type;
+  console.log(type);
+}
+
+function getCameraType(){
+  return cameraType;
 }

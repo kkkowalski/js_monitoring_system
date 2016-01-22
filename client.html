@@ -3,52 +3,51 @@
     <head>
         <title>Monitoring console</title>
         <link rel="stylesheet" type="text/css" href="css/second.css" />
-
     </head>
     <body>
         <ul class="navigation">
+          <li><a href='../index.html'>Home</a></li>
           <li><a href='../client.html'>Open Console</a></li>
           <li><a href='../server.html'>Stream Camera</a></li>
         </ul>
         <div id = "mainView">
           <div id="gridView">
-            <div class="cameraView">
-              <img src="" alt="No signal" id="img0" onclick="openModalCam(this.id);"></img>
+            <div class="cameraView" id="div0" onclick="setSelectedCamera(this.id)">
+              <img src="" alt="No signal" id="img0"></img>
               <div id="textCameraInfo0" class="cameraText"></div>
             </div>
-            <div class="cameraView">
-              <img src="" alt="No signal" id="img1" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo1" class="cameraText"></div>
+            <div class="cameraView" id="div1" onclick="setSelectedCamera(this.id)">
+              <img src="" alt="No signal" id="img1"></img>
+              <p id="textCameraInfo1" class="cameraText"></p>
             </div>
-            <div class="cameraView">
-              <img src="" alt="No signal" id="img2" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo2" class="cameraText"></div>
+            <div class="cameraView" id="div2" onclick="setSelectedCamera(this.id)">
+              <img src="" alt="No signal" id="img2"></img>
+              <p id="textCameraInfo2" class="cameraText"></p>
             </div>
-            <div class="cameraView">
-              <img src="" alt="No signal" id="img3" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo3" class="cameraText"></div>
+            <div class="cameraView" id="div3" onclick="setSelectedCamera(this.id)">
+              <img src="" alt="No signal" id="img3"></img>
+              <p id="textCameraInfo3" class="cameraText"></p>
             </div>
-            <div class="cameraView">
-              <img src="" alt="No signal" id="img4" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo4" class="cameraText"></div>
+            <div class="cameraView" id="div4" onclick="setSelectedCamera(this.id)">
+              <img src="" alt="No signal" id="img4"></img>
+              <p id="textCameraInfo4" class="cameraText"></p>
             </div>
-            <div class="cameraView">
-              <img src="" alt="No signal" id="img5" onclick="openModalCam(this.id);"></img>
-              <div id="textCameraInfo5" class="cameraText"></div>
+            <div class="cameraView" id="div5" onclick="setSelectedCamera(this.id)">
+              <img src="" alt="No signal" id="img5"></img>
+              <p id="textCameraInfo5" class="cameraText"></p>
             </div>
           </div>
 
-          <div id="myModal" class="modal">
-            <span class="close">x</span>
-            <div class="modal-content" width="240" height="320">
-              <img src="" alt="No signal" id="img" class="cameraView" onclick="openModalCam(this.id);">
-            </div>
-            <div id="caption"></div>
-          </div>
 
           <div id="controlPanel">
+            Snapshot:<br/>
+            <input type="button" class="streamNavigator" value="Photo" id="button"/><br/><br/>
+            Motion:<br/>
+            <input type="button" class="streamNavigator" value="Motion" id="button"/><br/><br/>
+            Zoom:<br/>
             <input type="button" class="streamNavigator" value="++" id="button"></input>
             <input type="button" class="streamNavigator" value="--" id="button"></input><br/>
+            Camera Move:<br/>
             <input type="button" class="streamNavigator" value="/\" id="button"></input><br/>
             <input type="button" class="streamNavigator" value="<" id="button"></input>
             <input type="button" class="streamNavigator" value="O" id="button"></input>

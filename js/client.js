@@ -4,6 +4,8 @@ var ws = new WebSocket(ws_protocol+"://"+ws_ip+":"+ws_port+"/");
 
 var cameras = [ ];
 
+var selectedCamera = 0;
+
 ws.onopen = function(){
     console.log('Websocket Open');
 };
@@ -51,10 +53,16 @@ ws.onmessage = function(message){
         // Avoid unset camera name or type
         if(cameras[i].name == null || cameras[i].name == "")cameras[i].name="Unset";
         if(cameras[i].type == null || cameras[i].type == "")cameras[i].type="Unset";
-
-        var camName = document.createTextNode(cameras[i].name +" "+cameras[i].type);
+        var new_row = document.createElement('div');
+        new_row.className = "cameraStatus";
+        var camName = document.createTextNode(cameras[i].name);
+        var camType = document.createTextNode(cameras[i].type);
+        var br = document.createElement("br");
         while (theDiv.hasChildNodes())theDiv.removeChild(theDiv.lastChild);
+        theDiv.appendChild(new_row);
         theDiv.appendChild(camName);
+        theDiv.appendChild(br);
+        theDiv.appendChild(camType);
       }
 };
 
@@ -72,4 +80,32 @@ function seekCameraInList(incName) {
   return false;
 }
 
+function updateSelectedCameras(){
+  var divs = document.getElementById("gridView").getElementsByTagName("div");
+  for(var i = 0; i < divs.length; i++){
+    console.log(divs[i].id.indexOf('div')>-1)
+    if(divs[i]==selectedCamera){
+      divs[i].style.border = "1px solid #686182";
+      divs[i].style.backgroundColor = "#284365";
+    }else if(divs[i].id.indexOf('div')===-1){
+      // Select all divs not containing 'div' in id field
+    }else{
+      divs[i].style.border = "1px solid #281122";
+      divs[i].style.backgroundColor = "#29324c";
+    }
+  }
+}
+
+function setSelectedCamera(camera){
+  selectedCamera = document.getElementById(camera);
+  updateSelectedCameras();
+}
+
+function getSelectedCamera(){
+  return selectedCamera;
+}
+
+function getSelectedCameraFrame(){
+  return selectedCamera.getElementsByTagName('img')[0];
+}
 
