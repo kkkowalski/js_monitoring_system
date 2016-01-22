@@ -18,31 +18,31 @@ var options = {
 var clients = [ ];
 
 var ws_server = ws.createServer(options, function (conn) {
-  console.log((new Date()) + "WSS  Peer " + conn.headers.host + " connected.");
-  console.log(conn);
+  console.log((new Date()) + "WSS  Peer " + conn.socket.remoteAddress + " connected.");
   var index = clients.push(conn) - 1;
 
   var ip = conn.remoteAddress;
 
   conn.on("text", function (str) {
-    console.log((new Date()) + "Received frame from: "+conn.headers.host);
+    console.log((new Date()) + "Received frame from: "+conn.socket.remoteAddress);
     conn.sendText(str.toUpperCase());
     if(clients.length>0){
       for (var i=0; i < clients.length; i++) {
+        if(clients[i]!=null)
         clients[i].sendText(str);
       }
     }
   })
 
   conn.on("close", function (code, reason) {
-    console.log((new Date()) + "WSS  Peer " + conn.headers.host  + " disconnected.");
-    clients.splice(index, 1);
+    console.log((new Date()) + "WSS  Peer " + conn.socket.remoteAddress  + " disconnected.");
+    clients[index]=null;
   })
 
 }).listen(8001)
 
 https.createServer(options,function (request, response) {
-  console.log((new Date()) + "HTTPS  Peer " + request.headers.host  + " connected.");
+  console.log((new Date()) + "HTTPS  Peer " + request.socket.remoteAddress  + " connected.");
 
   var filePath = '.' + request.url;
   if (filePath == './')

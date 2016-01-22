@@ -1,7 +1,5 @@
 var videoId = 'video',
 scaleFactor = 1,
-snapshot = null,
-upload_image,
 video = document.getElementsByTagName('video')[0],
 heading = document.getElementsByTagName('h1')[0];
 
@@ -10,32 +8,6 @@ var active = false;
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
 var ws = new WebSocket(ws_protocol+"://"+ws_ip+":"+ws_port+"/");
-
-/*function capture(video, scaleFactor) {
-    var w = video.videoWidth * scaleFactor;
-    var h = video.videoHeight * scaleFactor;
-    var canvas = document.createElement('canvas');
-    canvas.width  = w;
-    canvas.height = h;
-    var ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, 740, 480);
-    return canvas;
-}*/
-
-/*function shoot() {
-    var output = document.getElementById('output');
-    var canvas = capture(video, scaleFactor);
-    canvas.onclick = function(){
-        window.open(this.toDataURL());
-    };
-
-    $('#photos').live('pageshow',function(){
-        $('#output').html(canvas);
-        upload_image = canvas.toDataURL();
-    });
-
-    $.mobile.changePage('#photos');
-}*/
 
 function supportsToDataURL() {
     var c = document.createElement("canvas");
@@ -93,12 +65,12 @@ function streamFrame(){
       if(active){
         canvas.width=320;
         canvas.height=200;
-        var video = document.getElementById("video");
+        if(cameraType == "virtual")video = document.getElementById("video");
         context.drawImage(video,0,0,320,200);
         var image = canvas.toDataURL("image/png");
         ws.send(JSON.stringify({ cameraType: cameraType , cameraName: cameraName, cameraFrame: image }));
       }
-    },120);
+    },500);
   }
 
 navigator.getUserMedia = (navigator.getUserMedia ||
