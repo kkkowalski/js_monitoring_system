@@ -5,16 +5,16 @@ Websocket connection used to transfer data between cameras and monitoring server
 Application was developed for use on Linux distro. In order to start, you need also: `npm` package
 
 # Install:
-sudo apt-get update
-sudo apt-get install nodejs
+sudo apt-get update <br/>
+sudo apt-get install nodejs <br/>
 sudo apt-get install npm
 
 # Packages install
-cd <dir with cloned repository>
+cd "dir with cloned repository" <br/>
 npm install
 
 # Website startup
-cd <dir with cloned repository>
+cd "dir with cloned repository" <br/>
 node app.js
 
 # Testing
